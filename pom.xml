@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion> <!-- 항상 4.0.0으로 고정! -->
+  
+  <groupId>org.hellogroup</groupId>
+  <artifactId>use-maven</artifactId> <!-- 생성할 jar파일 명칭을 입력해줘요! -->
+  <packaging>jar</packaging>
+  <version>0.1.0</version>
+  
+  <properties>
+     <maven.compiler.source>1.8</maven.compiler.source>
+	 <maven.compiler.target>1.8</maven.compiler.target>
+  </properties>
+  
+  
+  <!-- 프로젝트에서 사용할 외부 라이브러리를 추가해줍니다! -->
+  <dependencies>
+	<dependency>
+		<groupId>joda-time</groupId>
+		<artifactId>joda-time</artifactId>
+		<version>2.9.2</version> <!-- default scope : provided -->
+	</dependency>
+	<dependency>
+		<groupId>junit</groupId>
+		<artifactId>junit</artifactId>
+		<version>4.12</version>
+		<scope>test</scope>    <!-- Dependency의 적용범위를 설정해요!(provided, test 중 선택) -->
+	</dependency>
+  </dependencies>
+  
+  <build>
+	<plugins>
+		<plugin>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-shade-plugin</artifactId>
+			<version>3.2.4</version>
+			<executions>
+				<execution>
+					<phase>package</phase>
+					<goals>
+						<goal>shade</goal>
+					</goals>
+					<configuration>
+						<transformers>
+							<transformer
+								implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+								<mainClass>hello.HelloWorld</mainClass> <!-- 프로젝트 실행시 main 이 있는 클래스를 지정해줘요! -->
+							</transformer>
+						</transformers>
+					</configuration>
+				</execution>
+			</executions>
+		
+		</plugin>
+	</plugins>
+  </build>
+
+</project>
