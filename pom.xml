@@ -39,7 +39,7 @@
 				<execution>
 					<phase>package</phase>
 					<goals>
-						<goal>shade</goal>
+						<goal>shade</goal> <!-- 라이브러리 충돌 방지를 위한 플러그인이예요! -->
 					</goals>
 					<configuration>
 						<transformers>
